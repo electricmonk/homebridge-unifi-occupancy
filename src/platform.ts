@@ -224,7 +224,7 @@ export class UnifiOccupancyPlatform implements DynamicPlatformPlugin {
   getNetworkDevices() {
     this.log.debug('Loading network devices...');
 
-    return this.unifi.get(`/v2/api/site/${this.unifi.opts.site}/device`)
+    return this.unifi.get(`v2/api/site/${this.unifi.opts.site}/device`)
       .then(({network_devices}) => {
         return network_devices
           .filter(({disabled}) => !disabled)
@@ -251,7 +251,7 @@ export class UnifiOccupancyPlatform implements DynamicPlatformPlugin {
   getDeviceFingerprints() {
     this.log.debug('Loading device fingerprints...');
 
-    return this.unifi.get('/v2/api/fingerprint_devices/0')
+    return this.unifi.get('v2/api/fingerprint_devices/0')
       .catch((err) => {
         this.log.error('ERROR: Failed to load device fingerprints', err);
         throw err;
@@ -269,7 +269,7 @@ export class UnifiOccupancyPlatform implements DynamicPlatformPlugin {
   getClients() {
     this.log.debug('Loading clients...');
 
-    return this.unifi.get(`/v2/api/site/${this.unifi.opts.site}/clients/active`)
+    return this.unifi.get(`v2/api/site/${this.unifi.opts.site}/clients/active`)
       .then(data => {
         return data;
       })
